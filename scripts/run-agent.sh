@@ -140,7 +140,7 @@ rm -f "$DONE_MARKER"
 WRAPPER="$LOG_DIR/${TASK_ID}.wrapper.sh"
 {
   echo '#!/usr/bin/env bash'
-  echo "export PATH=\"/Users/michi/.local/bin:/opt/homebrew/bin:\$PATH\""
+  echo "export PATH=\"${HOME}/.local/bin:/opt/homebrew/bin:/usr/local/bin:\$PATH\""
   if [[ "$MODEL" == *"codex"* ]]; then
     need codex
     printf 'codex --model %q -c %q --dangerously-bypass-approvals-and-sandbox "$(cat %q)"\n' \
