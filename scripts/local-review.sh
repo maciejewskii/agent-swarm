@@ -2,7 +2,7 @@
 set -euo pipefail
 export PATH="${HOME}/.local/bin:/opt/homebrew/bin:/usr/local/bin:${PATH}"
 
-SWARM_HOME="${SWARM_HOME:-${HOME}/.agent-swarm}"
+SWARM_HOME="${SWARM_HOME:-${HOME}/.vibe-swarm}"
 PENDING_FILE="$SWARM_HOME/notifications.pending"
 
 usage() {

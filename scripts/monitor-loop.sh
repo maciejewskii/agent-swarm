@@ -7,7 +7,7 @@
 
 set -euo pipefail
 
-SWARM_HOME="${SWARM_HOME:-${HOME}/.agent-swarm}"
+SWARM_HOME="${SWARM_HOME:-${HOME}/.vibe-swarm}"
 
 usage() {
   cat <<EOF

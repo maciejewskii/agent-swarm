@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-SWARM_HOME="${SWARM_HOME:-${HOME}/.agent-swarm}"
+SWARM_HOME="${SWARM_HOME:-${HOME}/.vibe-swarm}"
 PENDING_FILE="$SWARM_HOME/notifications.pending"
 LOCK_DIR="$SWARM_HOME/.check-agents.lock"
 RECOVERY_DIR="$SWARM_HOME/.exhausted-recoveries"
