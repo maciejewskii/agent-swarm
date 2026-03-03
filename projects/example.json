@@ -1,0 +1,18 @@
+{
+  "name": "myproject",
+  "repo": "/path/to/local/repo",
+  "remote": "github-user/repo-name",
+  "baseBranch": "main",
+  "worktreeBase": "/path/to/worktrees",
+  "tasksFile": "/path/to/worktrees/active-tasks.json",
+  "logDir": "/path/to/worktrees/logs",
+  "maxAttempts": 3,
+  "reviewMode": "local",
+  "requireGemini": false,
+  "reviewContexts": {
+    "codex": "local/codex-review",
+    "claude": "local/claude-review",
+    "gemini": "local/gemini-review",
+    "screenshot": "local/screenshot-gate"
+  }
+}

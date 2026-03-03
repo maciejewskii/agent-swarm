@@ -1,0 +1,10 @@
+.prompts/*/
+*.pending
+*.pending.backup.*
+monitor.log
+cron-*.log
+launchd-*.log
+notify-instant*.log
+patterns.log
+.check-agents.lock
+.exhausted-recoveries/
