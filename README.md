@@ -1,4 +1,4 @@
-# agent-swarm
+# vibe-swarm
 
 One-person dev team powered by Codex and Claude. You describe a task, agents write the code and open PRs, reviews run automatically, you merge.
 
@@ -34,25 +34,25 @@ Each task gets its own git worktree and tmux session. Multiple agents can run in
 ## Setup
 
 ```bash
-git clone https://github.com/YOUR_USER/agent-swarm ~/.agent-swarm
+git clone https://github.com/YOUR_USER/vibe-swarm ~/.vibe-swarm
 ```
 
 Add to `~/.zshrc` or `~/.bashrc`:
 
 ```bash
-export SWARM_HOME=~/.agent-swarm
+export SWARM_HOME=~/.vibe-swarm
 ```
 
 Copy and edit the example project config:
 
 ```bash
-cp ~/.agent-swarm/projects/example.json ~/.agent-swarm/projects/myproject.json
+cp ~/.vibe-swarm/projects/example.json ~/.vibe-swarm/projects/myproject.json
 ```
 
 Add a cron:
 
 ```
-*/10 * * * * SWARM_HOME=~/.agent-swarm bash ~/.agent-swarm/scripts/monitor-loop.sh >> ~/.agent-swarm/monitor.log 2>&1
+*/10 * * * * SWARM_HOME=~/.vibe-swarm bash ~/.vibe-swarm/scripts/monitor-loop.sh >> ~/.vibe-swarm/monitor.log 2>&1
 ```
 
 ## Project config
@@ -81,7 +81,7 @@ Add a cron:
 ## Spawning a task
 
 ```bash
-bash ~/.agent-swarm/scripts/spawn-agent.sh \
+bash ~/.vibe-swarm/scripts/spawn-agent.sh \
   --project myproject \
   fix-login-bug \
   codex \
@@ -124,7 +124,7 @@ Put `AGENTS.md` in your repo root. Every agent reads it before starting. Cover s
 The task prompt is the main channel for business context. Be explicit about constraints, edge cases, which files to touch, and what to avoid:
 
 ```bash
-bash ~/.agent-swarm/scripts/spawn-agent.sh \
+bash ~/.vibe-swarm/scripts/spawn-agent.sh \
   --project myproject \
   add-invoice-pdf \
   codex \
@@ -143,7 +143,7 @@ For larger projects, maintain a context file and prepend it to every prompt:
 
 ```bash
 CONTEXT=$(cat ~/projects/myproject/product-context.md)
-bash ~/.agent-swarm/scripts/spawn-agent.sh \
+bash ~/.vibe-swarm/scripts/spawn-agent.sh \
   --project myproject task-id codex \
   "$CONTEXT
 
@@ -183,7 +183,7 @@ After all attempts are exhausted, you get an `AGENT EXHAUSTED` notification.
 Manual respawn:
 
 ```bash
-bash ~/.agent-swarm/scripts/respawn-agent.sh \
+bash ~/.vibe-swarm/scripts/respawn-agent.sh \
   --project myproject \
   fix-login-bug \
   "Previous attempt broke the tests. Fix only session handling, don't touch the router."
@@ -226,12 +226,12 @@ launchd plist example:
 ```xml
 <key>WatchPaths</key>
 <array>
-    <string>/path/to/.agent-swarm/notifications.pending</string>
+    <string>/path/to/.vibe-swarm/notifications.pending</string>
 </array>
 <key>ProgramArguments</key>
 <array>
     <string>bash</string>
-    <string>/path/to/.agent-swarm/scripts/notify-instant.sh</string>
+    <string>/path/to/.vibe-swarm/scripts/notify-instant.sh</string>
 </array>
 ```
 
@@ -240,14 +240,14 @@ Set `NOTIFY_CHANNEL`, `NOTIFY_TARGET`, and `OPENCLAW_CONFIG` environment variabl
 ## Checking status
 
 ```bash
-bash ~/.agent-swarm/scripts/check-agents.sh --project myproject
-bash ~/.agent-swarm/scripts/check-agents.sh --all
+bash ~/.vibe-swarm/scripts/check-agents.sh --project myproject
+bash ~/.vibe-swarm/scripts/check-agents.sh --all
 ```
 
 ## Directory structure
 
 ```
-~/.agent-swarm/
+~/.vibe-swarm/
   scripts/
     spawn-agent.sh       # create worktree + start agent
     run-agent.sh         # run codex/claude in tmux, handle exit
