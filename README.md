@@ -318,3 +318,31 @@ Check $SWARM_HOME/notifications.pending.
 - If it has content: read it, send each NOTIFY line to Telegram, then clear the file.
 - If empty: skip.
 ```
+
+## External knowledge sources
+
+Agents only know what you put in the prompt. Beyond `AGENTS.md` and inline context, you can feed them any external knowledge before spawning:
+
+- **Obsidian vault** — pull relevant notes and prepend to the prompt
+- **Internal docs** — specs, architecture decisions, API contracts
+- **Database schema** — dump the relevant tables so the agent knows the data model
+- **Previous decisions** — why certain things were built the way they were
+
+Example:
+
+```bash
+SCHEMA=$(pg_dump --schema-only mydb | grep -A 20 'CREATE TABLE orders')
+DOCS=$(cat ~/obsidian/projects/myproject/orders.md)
+
+bash ~/.vibe-swarm/scripts/spawn-agent.sh \
+  --project myproject \
+  fix-order-total \
+  codex \
+  "$SCHEMA
+
+$DOCS
+
+Task: Fix order total calculation not including VAT."
+```
+
+The more relevant context the agent has upfront, the fewer wrong assumptions it makes. This is especially useful for domain-specific logic that isn't obvious from the code alone.
