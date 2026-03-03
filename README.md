@@ -30,7 +30,7 @@ The monitor runs on a cron every 10 minutes and calls `check-agents.sh --all`. W
 
 ```bash
 git clone https://github.com/YOUR_USER/agent-swarm ~/.agent-swarm
-export SWARM_HOME=~/.agent-swarm
+export SWARM_HOME=~/.agent-swarm  # add this to ~/.zshrc or ~/.bashrc
 ```
 
 Copy the example project config:
